@@ -1,0 +1,305 @@
+﻿@model List<Cart>
+
+@section PageTitle {
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Cart Details</h1>
+            </div>
+        </div>
+    </header>
+}
+
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Snippet - BBBootstrap</title>
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+        url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');body {
+            background-color: #eeeeee;
+            font-family: 'Open Sans',serif;
+            font-size: 14px
+        }
+
+        .container-fluid {
+            margin-top: 70px
+        }
+
+        .card-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 1.40rem
+        }
+
+        .img-sm {
+            width: 80px;
+            height: 80px
+        }
+
+        .itemside .info {
+            padding-left: 15px;
+            padding-right: 7px
+        }
+
+        .table-shopping-cart .price-wrap {
+            line-height: 1.2
+        }
+
+        .table-shopping-cart .price {
+            font-weight: bold;
+            margin-right: 5px;
+            display: block
+        }
+
+        .text-muted {
+            color: #969696 !important
+        }
+
+        a {
+            text-decoration: none !important
+        }
+
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: 0px
+        }
+
+        .itemside {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%
+        }
+
+        .dlist-align {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex
+        }
+
+        [class*="dlist-"] {
+            margin-bottom: 5px
+        }
+
+        .coupon {
+            border-radius: 1px
+        }
+
+        .price {
+            font-weight: 600;
+            color: #212529
+        }
+
+        .btn.btn-out {
+            outline: 1px solid #fff;
+            outline-offset: -5px
+        }
+
+        .btn-main {
+            border-radius: 2px;
+            text-transform: capitalize;
+            font-size: 15px;
+            padding: 10px 19px;
+            cursor: pointer;
+            color: #fff;
+            width: 100%
+        }
+
+        .btn-light {
+            color: #ffffff;
+            background-color: #F44336;
+            border-color: #f8f9fa;
+            font-size: 12px
+        }
+
+            .btn-light:hover {
+                color: #ffffff;
+                background-color: #F44336;
+                border-color: #F44336
+            }
+
+        .btn-apply {
+            font-size: 11px
+        }</style>
+</head>
+<body className='snippet-body'>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-lg-9">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Product</th>
+                                    <th scope="col" width="120">Quantity</th>
+                                    <th scope="col" width="120">Price</th>
+                                    <th scope="col" width="120">Total</th>
+                                    <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var cartItem in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <figure class="itemside align-items-center">
+                                                <div class="aside"><img src="@cartItem.Product.Image" class="img-sm"></div>
+                                                <figcaption class="info">
+                                                    <a href="#" class="title text-dark" data-abc="true">@cartItem.Product.Name</a>
+                                                    <p class="text-muted small">SIZE: L <br> Brand: MAXTRA</p>
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                        <td>
+                                            @{
+                                                var selectedValue = cartItem.Qty;
+
+                                                var items = new List<SelectListItem>
+                                                                                {
+                                                                                new SelectListItem{ Value = "1" , Text = "1" ,Selected= (selectedValue==1)},
+                                                                                new SelectListItem{ Value = "2" , Text = "2" ,Selected= (selectedValue==2)},
+                                                                                new SelectListItem{ Value = "3" , Text = "3" ,Selected= (selectedValue==3)},
+                                                                                new SelectListItem{ Value = "4" , Text = "4" ,Selected= (selectedValue==4)},
+                                                                                new SelectListItem{ Value = "5" , Text = "5" ,Selected= (selectedValue==5)},
+                                                                                new SelectListItem{ Value = "6" , Text = "6" ,Selected= (selectedValue==6)},
+                                                                                new SelectListItem{ Value = "7" , Text = "7" ,Selected= (selectedValue==7)},
+                                                                                new SelectListItem{ Value = "8" , Text = "8" ,Selected= (selectedValue==8)},
+                                                                                new SelectListItem{ Value = "9" , Text = "9" ,Selected= (selectedValue==9)},
+                                                                                new SelectListItem{ Value = "10" , Text = "10" ,Selected= (selectedValue==10)},
+                                                                                };
+                                            }
+
+                                            <select class="form-control"
+                                                    id="@cartItem.ProductId"
+                                                    data-productId="@cartItem.ProductId"
+                                                    onchange="submitCart(@cartItem.ProductId)"
+                                                    asp-items="items">
+                                            </select>
+
+                                        </td>
+                                        <td>
+                                            <div class="price-wrap">
+                                                <var class="price">$@cartItem.Product.Price</var>
+                                                <small class="text-muted"> $@cartItem.Product.Price each </small> 
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @{
+                                                double Total = 0;
+                                                Total = @cartItem.Product.Price * @cartItem.Qty;
+                                            }
+                                            <div class="price-wrap"> <var class="price">$@Total</var></div>
+                                        </td>
+                                        <td class="text-right d-none d-md-block">
+                                            <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip" data-abc="true"> <i class="fa fa-heart"></i></a>
+                                            <a asp-controller="Cart" asp-action="Remove" asp-route-id="@cartItem.Id" class="btn btn-light" data-abc="true"> Remove</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-lg-3">
+                @*  <div class="card mb-3">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Have coupon?</label>
+                                <div class="input-group"> <input type="text" class="form-control coupon" name="" placeholder="Coupon code"> <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon">Apply</button> </span> </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> *@
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right ml-3">$@ViewBag.TotalCost</dd>
+                        </dl>
+                        @*  <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right text-danger ml-3">- $10.00</dd>
+                        </dl> *@
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right text-dark b ml-3"><strong>$@ViewBag.TotalCost</strong></dd>
+                        </dl>
+                        <hr> <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript'>#</script>
+    <script type='text/javascript'>
+        var myLink = document.querySelector('a[href="#"]');
+                                        myLink.addEventListener('click', function(e) {
+                                          e.preventDefault();
+                                        });
+        function submitCart(value)
+        {
+            debugger;
+            var productId = value;
+            //var qty = $(`${productId}`).val();
+            var qty = document.getElementById(`${productId}`).value;
+
+                if (productId != 0) {
+                    $.ajax({
+                        url: "Cart/UpdateQty",
+                        data: { productId: productId,qty:qty },
+                        type: "GET",
+                        success: function (response) {
+                            location.reload(true);
+                        },
+                        error: function () {
+                        }
+                    });
+                }
+        }
+
+    </script>
+</body>
+</html>
